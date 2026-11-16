@@ -1,0 +1,105 @@
+<!DOCTYPE html>
+<html lang="id">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Format Catatan Cetak</title>
+<style>
+:root{--ink:#202124;--muted:#667085;--line:#30343b;--blue:#2563eb;--bg:#f3f5f8}
+*{box-sizing:border-box}body{margin:0;font-family:Arial,sans-serif;background:var(--bg);color:var(--ink)}
+header{background:#172554;color:white;padding:18px 16px}header h1{font-size:20px;margin:0 0 5px}header p{font-size:13px;margin:0;color:#dbeafe}
+main{max-width:1000px;margin:16px auto;padding:0 12px;display:grid;grid-template-columns:minmax(280px,1fr) minmax(300px,1fr);gap:14px}
+.panel{background:white;border:1px solid #e2e8f0;border-radius:14px;padding:14px;box-shadow:0 2px 8px #0f172a0a}
+h2{font-size:16px;margin:0 0 12px}.controls{display:grid;grid-template-columns:1fr 1fr;gap:10px}
+label{display:block;font-size:12px;font-weight:700;color:#475569;margin-bottom:5px}
+select,input{width:100%;padding:10px;border:1px solid #cbd5e1;border-radius:8px;font-size:14px;background:white;color:#111827}
+button{border:0;border-radius:9px;padding:10px 12px;font-weight:700;font-size:13px;cursor:pointer}
+.primary{background:var(--blue);color:white}.secondary{background:#eaf0ff;color:#1d4ed8}.danger{background:#fee2e2;color:#991b1b}.mutedbtn{background:#eef2f6;color:#334155}
+.actions{display:flex;gap:8px;flex-wrap:wrap;margin-top:12px}
+.hint{font-size:12px;color:var(--muted);line-height:1.5;margin:10px 0 0}
+.category{border:1px solid #e2e8f0;border-radius:10px;padding:10px;margin-top:10px}
+.cathead{display:flex;gap:8px;align-items:center;margin-bottom:8px}.cathead input{font-weight:700}
+.dates{display:grid;gap:7px}.date-row{display:grid;grid-template-columns:1fr auto;gap:7px;align-items:center}
+.date-row button{padding:8px 10px}
+.preview-wrap{overflow:auto;background:#e9edf3;border-radius:10px;padding:12px}
+.paper{background:white;color:#111;margin:0 auto;box-shadow:0 2px 12px #0002;padding:12mm 12mm;min-height:180mm}
+.paper h3{font-size:16px;margin:0 0 5px;text-decoration:underline}
+.print-cat{margin-bottom:9mm;break-inside:avoid}
+.print-row{display:flex;align-items:end;gap:8px;height:7mm;font-size:12px}
+.print-date{width:18mm;flex-shrink:0}
+.print-line{border-bottom:1px solid #222;flex:1;height:100%}
+#paperInfo{font-size:11px;color:#64748b;margin:8px 0}
+@media(max-width:720px){main{grid-template-columns:1fr}header h1{font-size:18px}.paper{padding:10mm;}}
+@page{margin:0}
+@media print{
+ body{background:white}header,.editor,.preview-title,#paperInfo{display:none!important}
+ main{display:block;margin:0;padding:0;max-width:none}.panel.preview-panel{border:0;padding:0;box-shadow:none;border-radius:0}
+ .preview-wrap{padding:0;background:white;overflow:visible}.paper{box-shadow:none;margin:0;width:100%;min-height:0;padding:var(--ptop,12mm) var(--pside,12mm)}
+ .print-cat{margin-bottom:var(--catgap,9mm)}.print-row{height:var(--rowheight,7mm);font-size:var(--fontsize,12pt)}
+ .print-date{width:var(--datewidth,18mm)}
+}
+</style>
+</head>
+<body>
+<header><h1>Format Catatan — Editor & Cetak</h1><p>Atur kategori dan tanggal, lalu pilih ukuran kertas sebelum mencetak.</p></header>
+<main>
+<section class="panel editor">
+<h2>Pengaturan kertas</h2>
+<div class="controls">
+ <div><label for="paperSize">Ukuran kertas</label><select id="paperSize"><option value="A4">A4 (21 × 29,7 cm)</option><option value="F4">F4 / Folio (21,5 × 33 cm)</option><option value="Letter">Letter (21,6 × 27,9 cm)</option></select></div>
+ <div><label for="orientation">Orientasi</label><select id="orientation"><option value="portrait">Potret</option><option value="landscape">Lanskap</option></select></div>
+ <div><label for="fontSize">Ukuran tulisan</label><select id="fontSize"><option value="10">Kecil</option><option value="12" selected>Normal</option><option value="14">Besar</option></select></div>
+ <div><label for="rowHeight">Jarak antarbaris</label><select id="rowHeight"><option value="5">Rapat</option><option value="7" selected>Normal</option><option value="9">Lebar</option></select></div>
+ <div><label for="marginSize">Margin</label><select id="marginSize"><option value="8">Sempit</option><option value="12" selected>Normal</option><option value="18">Lebar</option></select></div>
+ <div><label for="dateWidth">Lebar kolom tanggal</label><select id="dateWidth"><option value="15">Sempit</option><option value="18" selected>Normal</option><option value="23">Lebar</option></select></div>
+</div>
+<div class="actions"><button class="primary" onclick="window.print()">Cetak / Simpan PDF</button><button class="secondary" onclick="addCategory()">+ Tambah kategori</button></div>
+<p class="hint">Di jendela cetak, pilih printer atau “Simpan sebagai PDF”. Pastikan ukuran kertas di pengaturan printer sama dengan pilihan di sini.</p>
+<hr style="border:0;border-top:1px solid #e2e8f0;margin:15px 0">
+<h2>Daftar kategori & tanggal</h2>
+<div id="editors"></div>
+<div class="actions"><button class="secondary" onclick="addCategory()">+ Kategori</button><button class="mutedbtn" onclick="addDateToLast()">+ Baris tanggal</button><button class="danger" onclick="resetData()">Reset contoh</button></div>
+<p class="hint">Perubahan tersimpan otomatis di browser HP ini. Gunakan tombol “+ Tanggal” pada kategori untuk menambah baris.</p>
+</section>
+<section class="panel preview-panel">
+<h2 class="preview-title">Pratinjau cetak</h2>
+<div id="paperInfo"></div>
+<div class="preview-wrap"><div class="paper" id="paper"></div></div>
+</section>
+</main>
+<script>
+const starter=[
+ {name:"TSEL",dates:["5/1","7/2","7/3","7/5","7/7","11/7","10/28"]},
+ {name:"AXIS",dates:["10/1","6/3","6/5","10/5","14/3","13/5","25/5","12/19","27/19","7/28","10/28","15/28","30/28","45/28"]},
+ {name:"XL",dates:["4/3","7/5","15/7","7/28","15/28","28/28"]},
+ {name:"TRI",dates:["6/2","6/5","10/5","13/7","7/28","16/28"]},
+ {name:"SM",dates:["6/3","6/7"]},
+ {name:"B.YU",dates:["12/2","8/3","10/5","10/7","9/14"]}
+];
+let data=JSON.parse(localStorage.getItem("catatanCetakV1")||"null")||starter;
+const $=id=>document.getElementById(id);
+function save(){localStorage.setItem("catatanCetakV1",JSON.stringify(data));renderEditors();renderPaper()}
+function esc(s){return String(s).replace(/[&<>"']/g,c=>({"&":"&amp;","<":"&lt;",">":"&gt;",'"':"&quot;","'":"&#39;"}[c]))}
+function renderEditors(){
+ $("editors").innerHTML=data.map((c,i)=>`<div class="category"><div class="cathead"><input aria-label="Nama kategori" value="${esc(c.name)}" onchange="renameCat(${i},this.value)"><button class="danger" onclick="removeCat(${i})">Hapus</button></div><div class="dates">${c.dates.map((d,j)=>`<div class="date-row"><input aria-label="Tanggal" value="${esc(d)}" onchange="editDate(${i},${j},this.value)" placeholder="Contoh: 5/1"><button class="mutedbtn" onclick="removeDate(${i},${j})">×</button></div>`).join("")}</div><div class="actions"><button class="secondary" onclick="addDate(${i})">+ Tanggal</button></div></div>`).join("");
+}
+function renderPaper(){
+ const size=$("paperSize").value,ori=$("orientation").value,fs=$("fontSize").value,rh=$("rowHeight").value,mg=$("marginSize").value,dw=$("dateWidth").value;
+ const sizes={A4:["210mm","297mm"],F4:["215mm","330mm"],Letter:["216mm","279mm"]};
+ let [w,h]=sizes[size];if(ori==="landscape")[w,h]=[h,w];
+ const p=$("paper");p.style.width=`${w}`;p.style.minHeight=`${h}`;p.style.setProperty("--ptop",mg+"mm");p.style.setProperty("--pside",mg+"mm");p.style.setProperty("--rowheight",rh+"mm");p.style.setProperty("--fontsize",fs+"pt");p.style.setProperty("--datewidth",dw+"mm");
+ p.innerHTML=data.map(c=>`<section class="print-cat"><h3>${esc(c.name||"KATEGORI")}</h3>${c.dates.map(d=>`<div class="print-row"><span class="print-date">${esc(d)} :</span><span class="print-line"></span></div>`).join("")}</section>`).join("");
+ $("paperInfo").textContent=`${size} • ${ori==="portrait"?"Potret":"Lanskap"} • ${data.length} kategori`;
+}
+function renameCat(i,v){data[i].name=v;save()}function editDate(i,j,v){data[i].dates[j]=v;save()}
+function addCategory(){data.push({name:"KATEGORI BARU",dates:[""]});save()}
+function removeCat(i){if(confirm("Hapus kategori ini?")){data.splice(i,1);save()}}
+function addDate(i){data[i].dates.push("");save()}
+function removeDate(i,j){data[i].dates.splice(j,1);save()}
+function addDateToLast(){if(!data.length)addCategory();else addDate(data.length-1)}
+function resetData(){if(confirm("Kembalikan daftar contoh?")){data=JSON.parse(JSON.stringify(starter));save()}}
+["paperSize","orientation","fontSize","rowHeight","marginSize","dateWidth"].forEach(id=>$(id).addEventListener("change",renderPaper));
+renderEditors();renderPaper();
+</script>
+</body>
+</html>
