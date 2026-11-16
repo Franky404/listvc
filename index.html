@@ -2,72 +2,112 @@
 <html lang="id">
 <head>
 <meta charset="UTF-8">
-<meta name="viewport" content="width=device-width, initial-scale=1">
-<title>Format Catatan Cetak</title>
+<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+<meta name="theme-color" content="#101b35">
+<title>CETAK LIST VOUCHER</title>
 <style>
-:root{--ink:#202124;--muted:#667085;--line:#30343b;--blue:#2563eb;--bg:#f3f5f8}
-*{box-sizing:border-box}body{margin:0;font-family:Arial,sans-serif;background:var(--bg);color:var(--ink)}
-header{background:#172554;color:white;padding:18px 16px}header h1{font-size:20px;margin:0 0 5px}header p{font-size:13px;margin:0;color:#dbeafe}
-main{max-width:1000px;margin:16px auto;padding:0 12px;display:grid;grid-template-columns:minmax(280px,1fr) minmax(300px,1fr);gap:14px}
-.panel{background:white;border:1px solid #e2e8f0;border-radius:14px;padding:14px;box-shadow:0 2px 8px #0f172a0a}
-h2{font-size:16px;margin:0 0 12px}.controls{display:grid;grid-template-columns:1fr 1fr;gap:10px}
-label{display:block;font-size:12px;font-weight:700;color:#475569;margin-bottom:5px}
-select,input{width:100%;padding:10px;border:1px solid #cbd5e1;border-radius:8px;font-size:14px;background:white;color:#111827}
-button{border:0;border-radius:9px;padding:10px 12px;font-weight:700;font-size:13px;cursor:pointer}
-.primary{background:var(--blue);color:white}.secondary{background:#eaf0ff;color:#1d4ed8}.danger{background:#fee2e2;color:#991b1b}.mutedbtn{background:#eef2f6;color:#334155}
-.actions{display:flex;gap:8px;flex-wrap:wrap;margin-top:12px}
-.hint{font-size:12px;color:var(--muted);line-height:1.5;margin:10px 0 0}
-.category{border:1px solid #e2e8f0;border-radius:10px;padding:10px;margin-top:10px}
-.cathead{display:flex;gap:8px;align-items:center;margin-bottom:8px}.cathead input{font-weight:700}
-.dates{display:grid;gap:7px}.date-row{display:grid;grid-template-columns:1fr auto;gap:7px;align-items:center}
-.date-row button{padding:8px 10px}
-.preview-wrap{overflow:auto;background:#e9edf3;border-radius:10px;padding:12px}
-.paper{background:white;color:#111;margin:0 auto;box-shadow:0 2px 12px #0002;padding:12mm 12mm;min-height:180mm}
-.paper h3{font-size:16px;margin:0 0 5px;text-decoration:underline}
-.print-cat{margin-bottom:9mm;break-inside:avoid}
-.print-row{display:flex;align-items:end;gap:8px;height:7mm;font-size:12px}
-.print-date{width:18mm;flex-shrink:0}
-.print-line{border-bottom:1px solid #222;flex:1;height:100%}
-#paperInfo{font-size:11px;color:#64748b;margin:8px 0}
-@media(max-width:720px){main{grid-template-columns:1fr}header h1{font-size:18px}.paper{padding:10mm;}}
+:root{--navy:#101b35;--navy2:#172747;--blue:#4263eb;--blue2:#eef2ff;--ink:#172033;--muted:#718096;--line:#e5eaf2;--bg:#f4f6fb;--white:#fff;--green:#0f9f75;--red:#d64545;--shadow:0 12px 32px rgba(23,39,71,.07)}
+*{box-sizing:border-box}html{scroll-behavior:smooth}body{margin:0;background:var(--bg);color:var(--ink);font-family:Inter,ui-sans-serif,system-ui,-apple-system,"Segoe UI",Arial,sans-serif}
+.topbar{background:linear-gradient(120deg,#101b35,#203b69);color:#fff;padding:22px max(18px,calc((100% - 1180px)/2));}
+.brand{display:flex;align-items:center;gap:12px}.logo{width:42px;height:42px;border-radius:13px;background:#ffffff1c;display:grid;place-items:center;font-size:21px}.brand h1{font-size:19px;line-height:1.2;margin:0;font-weight:800;letter-spacing:-.3px}.brand p{margin:4px 0 0;font-size:12px;color:#cbd7ed}
+.topnote{margin-top:17px;display:flex;align-items:center;justify-content:space-between;gap:12px;color:#dbe6fa;font-size:13px}.status{display:inline-flex;align-items:center;gap:6px;background:#ffffff18;padding:7px 10px;border-radius:99px;font-size:11px;white-space:nowrap}.dot{width:7px;height:7px;background:#52d6a3;border-radius:50%}
+main{max-width:1180px;margin:22px auto;padding:0 16px 40px;display:grid;grid-template-columns:minmax(0,1.03fr) minmax(0,.97fr);gap:18px;align-items:start}
+.panel{background:var(--white);border:1px solid var(--line);border-radius:18px;box-shadow:var(--shadow);overflow:hidden}.panel-head{padding:18px 20px 14px;border-bottom:1px solid var(--line);display:flex;align-items:center;justify-content:space-between;gap:10px}.panel-head h2{font-size:15px;margin:0;font-weight:800}.panel-head p{font-size:11px;color:var(--muted);margin:4px 0 0}.panel-body{padding:18px 20px}
+.section-kicker{font-size:10px;font-weight:800;letter-spacing:1px;text-transform:uppercase;color:#8290a7;margin:0 0 11px}
+.settings-grid{display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:11px}
+.field label{display:block;font-size:11px;font-weight:750;color:#59677d;margin:0 0 6px}
+select,input{font:inherit;color:var(--ink);width:100%;border:1px solid #dce3ee;background:#fff;border-radius:10px;padding:10px 11px;min-height:40px;outline:none;transition:.15s}
+select:focus,input:focus{border-color:#7890ff;box-shadow:0 0 0 3px #4263eb18}
+.btn{border:0;border-radius:10px;padding:10px 13px;min-height:39px;font-weight:750;font-size:12px;cursor:pointer;display:inline-flex;align-items:center;justify-content:center;gap:7px;transition:transform .12s,filter .12s}
+.btn:active{transform:scale(.98)}.btn-primary{background:var(--blue);color:white;box-shadow:0 5px 12px #4263eb2b}.btn-soft{background:var(--blue2);color:#3555d8}.btn-plain{background:#f0f3f8;color:#46536a}.btn-danger{background:#fff0f0;color:#bd3434}.btn-dark{background:var(--navy);color:white}
+.button-row{display:flex;gap:8px;flex-wrap:wrap;margin-top:14px}.print-main{width:100%;min-height:45px;font-size:13px}
+.note{margin:12px 0 0;color:#7b8799;font-size:11px;line-height:1.55}
+.divider{height:1px;background:var(--line);margin:19px 0}
+.cat-list{display:grid;gap:10px}.category{border:1px solid #e6ebf3;border-radius:13px;padding:11px;background:#fff}
+.cathead{display:flex;align-items:center;gap:8px}.cat-number{width:26px;height:26px;border-radius:8px;background:#edf1ff;color:#3c59d6;display:grid;place-items:center;font-size:11px;font-weight:850;flex-shrink:0}
+.cathead input{font-weight:800;min-height:37px;padding:8px 10px}.cathead .btn{min-height:36px;padding:8px 10px}
+.date-grid{display:grid;grid-template-columns:1fr;gap:7px;margin-top:9px}
+.date-row{display:flex;align-items:center;gap:5px}.date-row input{min-height:35px;padding:7px 9px;font-size:12px}.date-row .btn{min-height:34px;width:34px;padding:0;font-size:16px;flex-shrink:0}
+.cat-actions{margin-top:9px;display:flex;justify-content:space-between;align-items:center}.small-muted{font-size:10px;color:#8b96a8}
+.preview-panel{position:sticky;top:12px}.preview-body{padding:16px}.preview-meta{display:flex;align-items:center;justify-content:space-between;gap:8px;margin-bottom:12px}.paper-chip{font-size:10px;font-weight:800;background:#edf1ff;color:#3857d7;padding:7px 10px;border-radius:99px}.preview-help{font-size:10px;color:#8a95a8}
+.paper-stage{background:linear-gradient(135deg,#edf1f7,#e5eaf2);border-radius:13px;padding:13px;overflow:auto;max-height:76vh}
+.paper{background:white;color:#151515;margin:0 auto;box-shadow:0 4px 18px #15213b24;padding:10mm;min-height:180mm;transform-origin:top center}
+.print-cat{break-inside:avoid;margin:0 0 var(--catgap,3.5mm)}.print-cat h3{font-family:Arial,sans-serif;font-size:var(--fontsize,10pt);font-weight:700;text-decoration:underline;margin:0 0 1.5mm;line-height:1.2}
+.print-row{display:flex;align-items:end;gap:2mm;height:var(--rowheight,5.5mm);font-family:Arial,sans-serif;font-size:var(--fontsize,10pt);line-height:1}
+.print-date{width:var(--datewidth,16mm);flex-shrink:0;white-space:nowrap}.print-line{border-bottom:.25mm solid #222;flex:1;height:100%}
+.empty{color:#8a95a8;font-size:12px;text-align:center;padding:22px 10px}
+.footer{max-width:1180px;margin:-24px auto 25px;padding:0 16px;color:#8a95a8;font-size:10px;text-align:center}
+@media(max-width:820px){main{grid-template-columns:1fr;margin:14px auto;gap:13px}.preview-panel{position:static;grid-row:2}.editor-panel{grid-row:1}.topbar{padding:17px 16px}.topnote{margin-top:13px}.preview-body{padding:12px}.paper-stage{max-height:65vh}}
+@media(max-width:420px){.panel-head{padding:15px 14px}.panel-body{padding:14px}.settings-grid{gap:9px}.date-grid{grid-template-columns:1fr}.topnote{align-items:flex-start;flex-direction:column}.paper-stage{padding:8px}.brand h1{font-size:17px}}
 @page{margin:0}
 @media print{
- body{background:white}header,.editor,.preview-title,#paperInfo{display:none!important}
- main{display:block;margin:0;padding:0;max-width:none}.panel.preview-panel{border:0;padding:0;box-shadow:none;border-radius:0}
- .preview-wrap{padding:0;background:white;overflow:visible}.paper{box-shadow:none;margin:0;width:100%;min-height:0;padding:var(--ptop,12mm) var(--pside,12mm)}
- .print-cat{margin-bottom:var(--catgap,9mm)}.print-row{height:var(--rowheight,7mm);font-size:var(--fontsize,12pt)}
- .print-date{width:var(--datewidth,18mm)}
+ html,body{background:#fff!important;margin:0!important;padding:0!important;width:auto!important}
+ .topbar,.editor-panel,.preview-title,.preview-meta,.footer{display:none!important}
+ main{display:block!important;margin:0!important;padding:0!important;max-width:none!important}
+ .preview-panel{display:block!important;position:static!important;border:0!important;border-radius:0!important;box-shadow:none!important}
+ .preview-body{padding:0!important}.paper-stage{padding:0!important;margin:0!important;background:#fff!important;overflow:visible!important;max-height:none!important;border-radius:0!important}
+ .paper{box-shadow:none!important;margin:0!important;width:var(--paper-width)!important;height:var(--paper-height)!important;min-height:0!important;padding:var(--print-margin)!important;overflow:hidden!important;transform:none!important}
+ .print-cat{margin-bottom:var(--catgap)!important;break-inside:avoid!important}
+ .print-row{height:var(--rowheight)!important;font-size:var(--fontsize)!important}
+ .print-cat h3{font-size:var(--fontsize)!important}
+ .print-date{width:var(--datewidth)!important}
 }
 </style>
 </head>
 <body>
-<header><h1>Format Catatan — Editor & Cetak</h1><p>Atur kategori dan tanggal, lalu pilih ukuran kertas sebelum mencetak.</p></header>
+<header class="topbar">
+ <div class="brand"><div class="logo">▤</div><div><h1>LIST VOUCHER</h1><p>Pengatur list voucher & format cetak</p></div></div>
+ <div class="topnote"><span>Kelola list voucher dan paketnya dalam satu tempat.</span><span class="status"><i class="dot"></i> Tersimpan otomatis di perangkat</span></div>
+</header>
 <main>
-<section class="panel editor">
-<h2>Pengaturan kertas</h2>
-<div class="controls">
- <div><label for="paperSize">Ukuran kertas</label><select id="paperSize"><option value="A4">A4 (21 × 29,7 cm)</option><option value="F4">F4 / Folio (21,5 × 33 cm)</option><option value="Letter">Letter (21,6 × 27,9 cm)</option></select></div>
- <div><label for="orientation">Orientasi</label><select id="orientation"><option value="portrait">Potret</option><option value="landscape">Lanskap</option></select></div>
- <div><label for="fontSize">Ukuran tulisan</label><select id="fontSize"><option value="10">Kecil</option><option value="12" selected>Normal</option><option value="14">Besar</option></select></div>
- <div><label for="rowHeight">Jarak antarbaris</label><select id="rowHeight"><option value="5">Rapat</option><option value="7" selected>Normal</option><option value="9">Lebar</option></select></div>
- <div><label for="marginSize">Margin</label><select id="marginSize"><option value="8">Sempit</option><option value="12" selected>Normal</option><option value="18">Lebar</option></select></div>
- <div><label for="dateWidth">Lebar kolom tanggal</label><select id="dateWidth"><option value="15">Sempit</option><option value="18" selected>Normal</option><option value="23">Lebar</option></select></div>
-</div>
-<div class="actions"><button class="primary" onclick="window.print()">Cetak / Simpan PDF</button><button class="secondary" onclick="addCategory()">+ Tambah kategori</button></div>
-<p class="hint">Di jendela cetak, pilih printer atau “Simpan sebagai PDF”. Pastikan ukuran kertas di pengaturan printer sama dengan pilihan di sini.</p>
-<hr style="border:0;border-top:1px solid #e2e8f0;margin:15px 0">
-<h2>Daftar kategori & tanggal</h2>
-<div id="editors"></div>
-<div class="actions"><button class="secondary" onclick="addCategory()">+ Kategori</button><button class="mutedbtn" onclick="addDateToLast()">+ Baris tanggal</button><button class="danger" onclick="resetData()">Reset contoh</button></div>
-<p class="hint">Perubahan tersimpan otomatis di browser HP ini. Gunakan tombol “+ Tanggal” pada kategori untuk menambah baris.</p>
+<section class="panel editor-panel">
+ <div class="panel-head"><div><h2>Pengaturan dokumen</h2><p>Sesuaikan kertas dan tampilan cetak</p></div><span style="font-size:20px">⚙️</span></div>
+ <div class="panel-body">
+  <p class="section-kicker">Tata letak kertas</p>
+  <div class="settings-grid">
+   <div class="field"><label for="paperSize">Ukuran kertas</label><select id="paperSize"><option value="A4">A4 · 21 × 29,7 cm</option><option value="F4">F4 / Folio · 21,5 × 33 cm</option><option value="Letter">Letter · 21,6 × 27,9 cm</option></select></div>
+   <div class="field"><label for="orientation">Orientasi</label><select id="orientation"><option value="portrait">Potret</option><option value="landscape">Lanskap</option></select></div>
+   <div class="field"><label for="fontSize">Ukuran tulisan</label><select id="fontSize"><option value="8">Kecil</option><option value="9" selected>Normal</option><option value="11">Besar</option></select></div>
+   <div class="field"><label for="marginSize">Margin kertas</label><select id="marginSize"><option value="5">Sempit</option><option value="8" selected>Normal</option><option value="12">Lebar</option></select></div>
+   <div class="field"><label for="rowHeight">Jarak baris</label><select id="rowHeight"><option value="4.5">Rapat</option><option value="5.5" selected>Normal</option><option value="6.5">Lebar</option></select></div>
+   <div class="field"><label for="dateWidth">Kolom Paket</label><select id="dateWidth"><option value="14">Sempit</option><option value="17" selected>Normal</option><option value="21">Lebar</option></select></div>
+  </div>
+  <div class="button-row"><button class="btn btn-primary print-main" onclick="window.print()">▣ &nbsp; Cetak / Simpan PDF</button><button class="btn btn-soft print-main" type="button" onclick="downloadPaperImage()">▧ &nbsp; Unduh Foto</button></div>
+  <p class="note">Pilih ukuran kertas yang sama di dialog cetak dan di printer. Untuk memastikan satu halaman, website akan memadatkan jarak baris secara otomatis sesuai jumlah data.</p>
+  <div class="divider"></div>
+  <div style="display:flex;justify-content:space-between;align-items:center;gap:8px;margin-bottom:11px"><div><h2 style="font-size:15px;margin:0">Daftar Voucher</h2><p style="font-size:11px;color:var(--muted);margin:4px 0 0">Edit langsung sesuai kebutuhan</p></div><button class="btn btn-soft" onclick="addCategory()">＋ Voucher</button></div>
+  <div id="editors" class="cat-list"></div>
+  <div class="button-row"><button class="btn btn-soft" onclick="addCategory()">＋ Tambah Voucher</button><button class="btn btn-plain" onclick="addDateToLast()">＋ Paket terakhir</button><button class="btn btn-danger" onclick="resetData()">Reset contoh</button></div>
+  <p class="note">Data tersimpan otomatis di browser HP ini. Jika membuka website dari perangkat atau browser lain, data lokal tidak ikut berpindah.</p>
+ </div>
 </section>
 <section class="panel preview-panel">
-<h2 class="preview-title">Pratinjau cetak</h2>
-<div id="paperInfo"></div>
-<div class="preview-wrap"><div class="paper" id="paper"></div></div>
+ <div class="panel-head preview-title"><div><h2>Pratinjau cetak</h2><p>Hasil akhir mengikuti pengaturan di sebelah kiri</p></div><span style="font-size:20px">▧</span></div>
+ <div class="preview-body">
+  <div class="preview-meta"><span class="paper-chip" id="paperInfo">A4 · POTRET</span><span class="preview-help">Pratinjau langsung</span></div>
+  <div class="paper-stage"><div class="paper" id="paper"></div></div>
+ </div>
 </section>
 </main>
+<div class="footer">CatatanKu · Format cetak sederhana dan dapat disesuaikan</div>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/html2canvas/1.4.1/html2canvas.min.js"></script>
 <script>
+async function downloadPaperImage(){
+  const btn=event?.currentTarget;
+  const oldText=btn?btn.innerHTML:"";
+  try{
+    if(!window.html2canvas){alert("Fitur unduh foto memerlukan koneksi internet. Muat ulang halaman lalu coba lagi.");return;}
+    if(btn){btn.disabled=true;btn.textContent="Membuat foto...";}
+    renderPaper();
+    const paper=document.getElementById("paper");
+    const canvas=await html2canvas(paper,{scale:3,backgroundColor:"#ffffff",useCORS:true,logging:false});
+    const link=document.createElement("a");
+    link.download="list-voucher.png";
+    link.href=canvas.toDataURL("image/png");
+    link.click();
+  }catch(err){alert("Foto belum bisa dibuat. Coba lagi atau gunakan menu Cetak / Simpan PDF.");}
+  finally{if(btn){btn.disabled=false;btn.innerHTML=oldText;}}
+}
 const starter=[
  {name:"TSEL",dates:["5/1","7/2","7/3","7/5","7/7","11/7","10/28"]},
  {name:"AXIS",dates:["10/1","6/3","6/5","10/5","14/3","13/5","25/5","12/19","27/19","7/28","10/28","15/28","30/28","45/28"]},
@@ -76,28 +116,37 @@ const starter=[
  {name:"SM",dates:["6/3","6/7"]},
  {name:"B.YU",dates:["12/2","8/3","10/5","10/7","9/14"]}
 ];
-let data=JSON.parse(localStorage.getItem("catatanCetakV1")||"null")||starter;
+let data;try{data=JSON.parse(localStorage.getItem("catatanCetakV1"))}catch(e){}if(!Array.isArray(data))data=JSON.parse(JSON.stringify(starter));
 const $=id=>document.getElementById(id);
-function save(){localStorage.setItem("catatanCetakV1",JSON.stringify(data));renderEditors();renderPaper()}
 function esc(s){return String(s).replace(/[&<>"']/g,c=>({"&":"&amp;","<":"&lt;",">":"&gt;",'"':"&quot;","'":"&#39;"}[c]))}
+function persist(){try{localStorage.setItem("catatanCetakV1",JSON.stringify(data))}catch(e){}}
 function renderEditors(){
- $("editors").innerHTML=data.map((c,i)=>`<div class="category"><div class="cathead"><input aria-label="Nama kategori" value="${esc(c.name)}" onchange="renameCat(${i},this.value)"><button class="danger" onclick="removeCat(${i})">Hapus</button></div><div class="dates">${c.dates.map((d,j)=>`<div class="date-row"><input aria-label="Tanggal" value="${esc(d)}" onchange="editDate(${i},${j},this.value)" placeholder="Contoh: 5/1"><button class="mutedbtn" onclick="removeDate(${i},${j})">×</button></div>`).join("")}</div><div class="actions"><button class="secondary" onclick="addDate(${i})">+ Tanggal</button></div></div>`).join("");
+ $("editors").innerHTML=data.length?data.map((c,i)=>`<div class="category"><div class="cathead"><span class="cat-number">${i+1}</span><input aria-label="Nama Voucher" value="${esc(c.name)}" onchange="renameCat(${i},this.value)" placeholder="Nama Voucher"><button class="btn btn-danger" onclick="removeCat(${i})" title="Hapus kategori">Hapus</button></div><div class="date-grid">${c.dates.map((d,j)=>`<div class="date-row"><input aria-label="Paket" value="${esc(d)}" onchange="editDate(${i},${j},this.value)" placeholder="Nama paket"><button class="btn btn-plain" onclick="removeDate(${i},${j})" title="Hapus tanggal">×</button></div>`).join("")}</div><div class="cat-actions"><button class="btn btn-soft" onclick="addDate(${i})">＋ Paket</button><span class="small-muted">${c.dates.length} baris</span></div></div>`).join(""):'<div class="empty">Belum ada voucher. Tekan “Tambah Voucher” untuk mulai.</div>';
 }
 function renderPaper(){
- const size=$("paperSize").value,ori=$("orientation").value,fs=$("fontSize").value,rh=$("rowHeight").value,mg=$("marginSize").value,dw=$("dateWidth").value;
- const sizes={A4:["210mm","297mm"],F4:["215mm","330mm"],Letter:["216mm","279mm"]};
- let [w,h]=sizes[size];if(ori==="landscape")[w,h]=[h,w];
- const p=$("paper");p.style.width=`${w}`;p.style.minHeight=`${h}`;p.style.setProperty("--ptop",mg+"mm");p.style.setProperty("--pside",mg+"mm");p.style.setProperty("--rowheight",rh+"mm");p.style.setProperty("--fontsize",fs+"pt");p.style.setProperty("--datewidth",dw+"mm");
- p.innerHTML=data.map(c=>`<section class="print-cat"><h3>${esc(c.name||"KATEGORI")}</h3>${c.dates.map(d=>`<div class="print-row"><span class="print-date">${esc(d)} :</span><span class="print-line"></span></div>`).join("")}</section>`).join("");
- $("paperInfo").textContent=`${size} • ${ori==="portrait"?"Potret":"Lanskap"} • ${data.length} kategori`;
+ const size=$("paperSize").value,ori=$("orientation").value,fs=+$("fontSize").value,mg=+$("marginSize").value,rh=+$("rowHeight").value,dw=+$("dateWidth").value;
+ const sizes={A4:[210,297],F4:[215,330],Letter:[216,279]};let [w,h]=sizes[size];if(ori==="landscape")[w,h]=[h,w];
+ const totalRows=data.reduce((n,c)=>n+1+c.dates.length,0),cats=data.length;
+ const usableH=h-2*mg;
+  // Jarak baris paket dibuat lebih lega seperti contoh foto, lalu dipadatkan hanya jika perlu.
+  const packageRows=data.reduce((n,c)=>n+c.dates.length,0);
+  const headingSpace=cats*4.5, groupSpace=cats*3.5;
+  const fitRow=(usableH-headingSpace-groupSpace)/Math.max(1,packageRows);
+  let actualRow=Math.min(rh,Math.max(3.5,fitRow));
+  let actualFont=Math.min(fs,Math.max(6.5,actualRow*1.65));
+  let catGap=3.5;
+ const p=$("paper");p.style.width=w+"mm";p.style.minHeight=h+"mm";p.style.setProperty("--paper-width",w+"mm");p.style.setProperty("--paper-height",h+"mm");p.style.setProperty("--print-margin",mg+"mm");p.style.setProperty("--rowheight",actualRow+"mm");p.style.setProperty("--fontsize",actualFont+"pt");p.style.setProperty("--datewidth",dw+"mm");p.style.setProperty("--catgap",catGap+"mm");
+ p.innerHTML=data.map(c=>`<section class="print-cat"><h3>${esc(c.name||"VOUCHER")}</h3>${c.dates.map(d=>`<div class="print-row"><span class="print-date">${esc(d)} :</span><span class="print-line"></span></div>`).join("")}</section>`).join("");
+ $("paperInfo").textContent=`${size} · ${ori==="portrait"?"POTRET":"LANSAKAP"} · ${totalRows} baris`;
 }
-function renameCat(i,v){data[i].name=v;save()}function editDate(i,j,v){data[i].dates[j]=v;save()}
-function addCategory(){data.push({name:"KATEGORI BARU",dates:[""]});save()}
-function removeCat(i){if(confirm("Hapus kategori ini?")){data.splice(i,1);save()}}
-function addDate(i){data[i].dates.push("");save()}
-function removeDate(i,j){data[i].dates.splice(j,1);save()}
-function addDateToLast(){if(!data.length)addCategory();else addDate(data.length-1)}
-function resetData(){if(confirm("Kembalikan daftar contoh?")){data=JSON.parse(JSON.stringify(starter));save()}}
+function update(){persist();renderEditors();renderPaper()}
+function renameCat(i,v){data[i].name=v;update()}function editDate(i,j,v){data[i].dates[j]=v;update()}
+function addCategory(){data.push({name:"VOUCHER BARU",dates:[""]});update()}
+function removeCat(i){if(confirm("Hapus kategori ini?")){data.splice(i,1);update()}}
+function addDate(i){data[i].dates.push("");update()}
+function removeDate(i,j){data[i].dates.splice(j,1);update()}
+function addDateToLast(){if(!data.length){addCategory();return}addDate(data.length-1)}
+function resetData(){if(confirm("Kembalikan daftar contoh awal?")){data=JSON.parse(JSON.stringify(starter));update()}}
 ["paperSize","orientation","fontSize","rowHeight","marginSize","dateWidth"].forEach(id=>$(id).addEventListener("change",renderPaper));
 renderEditors();renderPaper();
 </script>
