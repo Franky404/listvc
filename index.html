@@ -15,13 +15,13 @@ main{max-width:1180px;margin:22px auto;padding:0 16px 40px;display:grid;grid-tem
 .panel{background:var(--white);border:1px solid var(--line);border-radius:18px;box-shadow:var(--shadow);overflow:hidden}.panel-head{padding:18px 20px 14px;border-bottom:1px solid var(--line);display:flex;align-items:center;justify-content:space-between;gap:10px}.panel-head h2{font-size:15px;margin:0;font-weight:800}.panel-head p{font-size:11px;color:var(--muted);margin:4px 0 0}.panel-body{padding:18px 20px}
 .section-kicker{font-size:10px;font-weight:800;letter-spacing:1px;text-transform:uppercase;color:#8290a7;margin:0 0 11px}
 .settings-grid{display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:11px}
-.field label{display:block;font-size:11px;font-weight:750;color:#59677d;margin:0 0 6px}
+.field label{display:block;font-size:11px;font-weight:750;color:#59677d;margin:0 0 6px}.field-help{display:block;margin:5px 1px 0;color:#8490a2;font-size:10px;line-height:1.4}
 select,input{font:inherit;color:var(--ink);width:100%;border:1px solid #dce3ee;background:#fff;border-radius:10px;padding:10px 11px;min-height:40px;outline:none;transition:.15s}
 select:focus,input:focus{border-color:#7890ff;box-shadow:0 0 0 3px #4263eb18}
 .btn{border:0;border-radius:10px;padding:10px 13px;min-height:39px;font-weight:750;font-size:12px;cursor:pointer;display:inline-flex;align-items:center;justify-content:center;gap:7px;transition:transform .12s,filter .12s}
 .btn:active{transform:scale(.98)}.btn-primary{background:var(--blue);color:white;box-shadow:0 5px 12px #4263eb2b}.btn-soft{background:var(--blue2);color:#3555d8}.btn-plain{background:#f0f3f8;color:#46536a}.btn-danger{background:#fff0f0;color:#bd3434}.btn-dark{background:var(--navy);color:white}
 .button-row{display:flex;gap:8px;flex-wrap:wrap;margin-top:14px}.print-main{width:100%;min-height:45px;font-size:13px}
-.note{margin:12px 0 0;color:#7b8799;font-size:11px;line-height:1.55}
+.note{margin:12px 0 0;color:#7b8799;font-size:11px;line-height:1.55}.guide{background:#f6f8ff;border:1px solid #e4eaff;border-radius:12px;padding:12px 13px;margin:0 0 17px}.guide h3{font-size:12px;margin:0 0 7px;color:#304a9b}.guide p,.guide li{font-size:10.5px;line-height:1.55;color:#59677d}.guide p{margin:0}.guide ol{padding-left:17px;margin:6px 0 0}.guide li+li{margin-top:3px}.subhelp{font-size:10px;color:#8490a2;line-height:1.45;margin:5px 0 0}
 .divider{height:1px;background:var(--line);margin:19px 0}
 .cat-list{display:grid;gap:10px}.category{border:1px solid #e6ebf3;border-radius:13px;padding:11px;background:#fff}
 .cathead{display:flex;align-items:center;gap:8px}.cat-number{width:26px;height:26px;border-radius:8px;background:#edf1ff;color:#3c59d6;display:grid;place-items:center;font-size:11px;font-weight:850;flex-shrink:0}
@@ -31,10 +31,10 @@ select:focus,input:focus{border-color:#7890ff;box-shadow:0 0 0 3px #4263eb18}
 .cat-actions{margin-top:9px;display:flex;justify-content:space-between;align-items:center}.small-muted{font-size:10px;color:#8b96a8}
 .preview-panel{position:sticky;top:12px}.preview-body{padding:16px}.preview-meta{display:flex;align-items:center;justify-content:space-between;gap:8px;margin-bottom:12px}.paper-chip{font-size:10px;font-weight:800;background:#edf1ff;color:#3857d7;padding:7px 10px;border-radius:99px}.preview-help{font-size:10px;color:#8a95a8}
 .paper-stage{background:linear-gradient(135deg,#edf1f7,#e5eaf2);border-radius:13px;padding:13px;overflow:auto;max-height:76vh}
-.paper{background:white;color:#151515;margin:0 auto;box-shadow:0 4px 18px #15213b24;padding:10mm;min-height:180mm;transform-origin:top center}
+.paper{background:white;color:#151515;margin:0 auto;box-shadow:0 4px 18px #15213b24;padding:calc(var(--print-margin, 8mm) + 8mm) var(--print-margin, 8mm) var(--print-margin, 8mm);min-height:180mm;transform-origin:top center}
 .print-cat{break-inside:avoid;margin:0 0 var(--catgap,3.5mm)}.print-cat h3{font-family:Arial,sans-serif;font-size:var(--fontsize,10pt);font-weight:700;text-decoration:underline;margin:0 0 1.5mm;line-height:1.2}
-.print-row{display:flex;align-items:end;gap:2mm;height:var(--rowheight,5.5mm);font-family:Arial,sans-serif;font-size:var(--fontsize,10pt);line-height:1}
-.print-date{width:var(--datewidth,16mm);flex-shrink:0;white-space:nowrap}.print-line{border-bottom:.25mm solid #222;flex:1;height:100%}
+.print-row{display:flex;align-items:end;gap:0.8mm;width:100%;height:var(--rowheight,5.5mm);font-family:Arial,sans-serif;font-size:var(--fontsize,10pt);line-height:1}
+.print-date{width:auto;flex-shrink:0;white-space:nowrap}.print-line{border-bottom:.25mm solid #222;flex:1;height:100%;min-width:0}
 .empty{color:#8a95a8;font-size:12px;text-align:center;padding:22px 10px}
 .footer{max-width:1180px;margin:-24px auto 25px;padding:0 16px;color:#8a95a8;font-size:10px;text-align:center}
 @media(max-width:820px){main{grid-template-columns:1fr;margin:14px auto;gap:13px}.preview-panel{position:static;grid-row:2}.editor-panel{grid-row:1}.topbar{padding:17px 16px}.topnote{margin-top:13px}.preview-body{padding:12px}.paper-stage{max-height:65vh}}
@@ -46,50 +46,58 @@ select:focus,input:focus{border-color:#7890ff;box-shadow:0 0 0 3px #4263eb18}
  main{display:block!important;margin:0!important;padding:0!important;max-width:none!important}
  .preview-panel{display:block!important;position:static!important;border:0!important;border-radius:0!important;box-shadow:none!important}
  .preview-body{padding:0!important}.paper-stage{padding:0!important;margin:0!important;background:#fff!important;overflow:visible!important;max-height:none!important;border-radius:0!important}
- .paper{box-shadow:none!important;margin:0!important;width:var(--paper-width)!important;height:var(--paper-height)!important;min-height:0!important;padding:var(--print-margin)!important;overflow:hidden!important;transform:none!important}
+ .paper{box-shadow:none!important;margin:0!important;width:var(--paper-width)!important;height:var(--paper-height)!important;min-height:0!important;padding:var(--print-top-margin) 2mm var(--print-margin) var(--print-margin)!important;overflow:hidden!important;transform:none!important}
  .print-cat{margin-bottom:var(--catgap)!important;break-inside:avoid!important}
  .print-row{height:var(--rowheight)!important;font-size:var(--fontsize)!important}
  .print-cat h3{font-size:var(--fontsize)!important}
- .print-date{width:var(--datewidth)!important}
+ .print-date{width:auto!important}
 }
 </style>
 </head>
 <body>
 <header class="topbar">
  <div class="brand"><div class="logo">▤</div><div><h1>LIST VOUCHER</h1><p>Pengatur list voucher & format cetak</p></div></div>
- <div class="topnote"><span>Kelola list voucher dan paketnya dalam satu tempat.</span><span class="status"><i class="dot"></i> Tersimpan otomatis di perangkat</span></div>
+ <div class="topnote"><span>Kelola list voucher dan paketnya dalam satu tempat. X- Franky</span><span class="status"><i class="dot"></i> Tersimpan otomatis di perangkat</span></div>
 </header>
 <main>
 <section class="panel editor-panel">
  <div class="panel-head"><div><h2>Pengaturan dokumen</h2><p>Sesuaikan kertas dan tampilan cetak</p></div><span style="font-size:20px">⚙️</span></div>
  <div class="panel-body">
+  <div class="guide">
+   <h3>👋 Selamat datang! Cara menggunakan</h3>
+   <ol>
+    <li>Atur ukuran dan tampilan kertas pada bagian <b>Pengaturan dokumen</b>.</li>
+    <li>Edit nama voucher, lalu ubah atau tambah daftar paket di bagian <b>Daftar Voucher</b>.</li>
+    <li>Lihat hasilnya di <b>Pratinjau cetak</b>. Perubahan akan tampil otomatis.</li>
+    <li>Jika sudah sesuai, pilih <b>Cetak / Simpan PDF</b> untuk mencetak atau menyimpan PDF. Pilih <b>Unduh Foto</b> untuk menyimpan hasil sebagai gambar.</li>
+   </ol>
+  </div>
   <p class="section-kicker">Tata letak kertas</p>
   <div class="settings-grid">
-   <div class="field"><label for="paperSize">Ukuran kertas</label><select id="paperSize"><option value="A4">A4 · 21 × 29,7 cm</option><option value="F4">F4 / Folio · 21,5 × 33 cm</option><option value="Letter">Letter · 21,6 × 27,9 cm</option></select></div>
-   <div class="field"><label for="orientation">Orientasi</label><select id="orientation"><option value="portrait">Potret</option><option value="landscape">Lanskap</option></select></div>
-   <div class="field"><label for="fontSize">Ukuran tulisan</label><select id="fontSize"><option value="8">Kecil</option><option value="9" selected>Normal</option><option value="11">Besar</option></select></div>
-   <div class="field"><label for="marginSize">Margin kertas</label><select id="marginSize"><option value="5">Sempit</option><option value="8" selected>Normal</option><option value="12">Lebar</option></select></div>
-   <div class="field"><label for="rowHeight">Jarak baris</label><select id="rowHeight"><option value="4.5">Rapat</option><option value="5.5" selected>Normal</option><option value="6.5">Lebar</option></select></div>
-   <div class="field"><label for="dateWidth">Kolom Paket</label><select id="dateWidth"><option value="14">Sempit</option><option value="17" selected>Normal</option><option value="21">Lebar</option></select></div>
+   <div class="field"><label for="paperSize">Ukuran kertas</label><select id="paperSize"><option value="A4">A4 · 21 × 29,7 cm</option><option value="F4">F4 / Folio · 21,5 × 33 cm</option><option value="Letter">Letter · 21,6 × 27,9 cm</option></select><small class="field-help">Pilih ukuran kertas yang akan digunakan saat mencetak.</small></div>
+   <div class="field"><label for="orientation">Orientasi</label><select id="orientation"><option value="portrait">Potret</option><option value="landscape">Lanskap</option></select><small class="field-help">Potret memanjang ke atas; lanskap melebar ke samping.</small></div>
+   <div class="field"><label for="fontSize">Ukuran tulisan</label><select id="fontSize"><option value="8">Kecil</option><option value="9" selected>Normal</option><option value="11">Besar</option></select><small class="field-help">Mengatur besar-kecilnya tulisan pada daftar voucher.</small></div>
+   <div class="field"><label for="marginSize">Margin kertas</label><select id="marginSize"><option value="5">Sempit</option><option value="8" selected>Normal</option><option value="12">Lebar</option></select><small class="field-help">Mengatur ruang tepi kertas, terutama bagian atas dan kiri.</small></div>
+   <div class="field"><label for="rowHeight">Jarak baris</label><select id="rowHeight"><option value="4.5">Rapat</option><option value="5.5" selected>Normal</option><option value="6.5">Lebar</option></select><small class="field-help">Mengatur jarak antarbaris agar daftar lebih rapat atau renggang.</small></div>
   </div>
-  <div class="button-row"><button class="btn btn-primary print-main" onclick="window.print()">▣ &nbsp; Cetak / Simpan PDF</button><button class="btn btn-soft print-main" type="button" onclick="downloadPaperImage()">▧ &nbsp; Unduh Foto</button></div>
+  <div class="button-row"><button class="btn btn-primary print-main" onclick="window.print()">▣ &nbsp; Cetak / Simpan PDF</button><button class="btn btn-soft print-main" type="button" onclick="downloadPaperImage()">▧ &nbsp; Unduh Foto</button></div><p class="subhelp">Cetak / Simpan PDF: buka menu cetak perangkat, lalu pilih printer atau opsi “Simpan sebagai PDF”. Unduh Foto: simpan pratinjau sebagai gambar PNG.</p>
   <p class="note">Pilih ukuran kertas yang sama di dialog cetak dan di printer. Untuk memastikan satu halaman, website akan memadatkan jarak baris secara otomatis sesuai jumlah data.</p>
   <div class="divider"></div>
-  <div style="display:flex;justify-content:space-between;align-items:center;gap:8px;margin-bottom:11px"><div><h2 style="font-size:15px;margin:0">Daftar Voucher</h2><p style="font-size:11px;color:var(--muted);margin:4px 0 0">Edit langsung sesuai kebutuhan</p></div><button class="btn btn-soft" onclick="addCategory()">＋ Voucher</button></div>
-  <div id="editors" class="cat-list"></div>
-  <div class="button-row"><button class="btn btn-soft" onclick="addCategory()">＋ Tambah Voucher</button><button class="btn btn-plain" onclick="addDateToLast()">＋ Paket terakhir</button><button class="btn btn-danger" onclick="resetData()">Reset contoh</button></div>
-  <p class="note">Data tersimpan otomatis di browser HP ini. Jika membuka website dari perangkat atau browser lain, data lokal tidak ikut berpindah.</p>
+  <div style="display:flex;justify-content:space-between;align-items:center;gap:8px;margin-bottom:11px"><div><h2 style="font-size:15px;margin:0">Daftar Voucher</h2><p style="font-size:11px;color:var(--muted);margin:4px 0 0">Ubah nama voucher dan daftar paket sesuai kebutuhan</p></div><button class="btn btn-soft" onclick="addCategory()">＋ Voucher</button></div>
+  <p class="subhelp">Tips: ketuk kolom nama untuk mengganti nama voucher. Ketuk kolom paket untuk mengubah isinya. Tombol × menghapus satu paket, sedangkan tombol Hapus menghapus seluruh kategori voucher.</p><div id="editors" class="cat-list"></div>
+  <div class="button-row"><button class="btn btn-soft" onclick="addCategory()">＋ Tambah Voucher</button><button class="btn btn-plain" onclick="addDateToLast()">＋ Paket terakhir</button><button class="btn btn-danger" onclick="resetData()">Reset contoh</button></div><p class="subhelp"><b>Tambah Voucher</b> membuat kategori baru. <b>Paket terakhir</b> menambah satu baris paket pada kategori paling bawah. <b>Reset contoh</b> mengembalikan daftar awal dan mengganti semua perubahan.</p>
+  <p class="note">💾 Data tersimpan otomatis di browser pada perangkat ini. Data tidak otomatis tersinkron ke HP atau browser lain. Jangan hapus data browser jika ingin mempertahankan daftar yang sudah dibuat.</p>
  </div>
 </section>
 <section class="panel preview-panel">
  <div class="panel-head preview-title"><div><h2>Pratinjau cetak</h2><p>Hasil akhir mengikuti pengaturan di sebelah kiri</p></div><span style="font-size:20px">▧</span></div>
  <div class="preview-body">
-  <div class="preview-meta"><span class="paper-chip" id="paperInfo">A4 · POTRET</span><span class="preview-help">Pratinjau langsung</span></div>
+  <div class="preview-meta"><span class="paper-chip" id="paperInfo">A4 · POTRET</span><span class="preview-help">Tampilan hasil cetak</span></div>
   <div class="paper-stage"><div class="paper" id="paper"></div></div>
  </div>
 </section>
 </main>
-<div class="footer">CatatanKu · Format cetak sederhana dan dapat disesuaikan</div>
+<div class="footer">X - Franky @XKY404</div>
 <script src="https://cdnjs.cloudflare.com/ajax/libs/html2canvas/1.4.1/html2canvas.min.js"></script>
 <script>
 async function downloadPaperImage(){
@@ -100,7 +108,7 @@ async function downloadPaperImage(){
     if(btn){btn.disabled=true;btn.textContent="Membuat foto...";}
     renderPaper();
     const paper=document.getElementById("paper");
-    const canvas=await html2canvas(paper,{scale:3,backgroundColor:"#ffffff",useCORS:true,logging:false});
+    const canvas=await html2canvas(paper,{scale:3,backgroundColor:"#ffffff",useCORS:true,logging:false, width:paper.scrollWidth, height:paper.scrollHeight, windowWidth:document.documentElement.clientWidth, windowHeight:document.documentElement.clientHeight});
     const link=document.createElement("a");
     link.download="list-voucher.png";
     link.href=canvas.toDataURL("image/png");
@@ -109,26 +117,26 @@ async function downloadPaperImage(){
   finally{if(btn){btn.disabled=false;btn.innerHTML=oldText;}}
 }
 const starter=[
- {name:"TSEL",dates:["5/1","7/2","7/3","7/5","7/7","11/7","10/28"]},
- {name:"AXIS",dates:["10/1","6,5/3","6/5","10/5","14/3","17/5","25/5","12/14","27/14","7/28","10/28","15/28","30/28","45/28"]},
- {name:"XL",dates:["4/3","7,5/5","15/7","7/28","15/28","28/28"]},
- {name:"IM3",dates:["6/2","6/5","10/5","13/7","7/28","16/28"]},
- {name:"TRI",dates:["10/1","11/3","10/5","12/5","15/7","8/28","16/28"]},
- {name:"SM",dates:["6/3","6/7"]},
- {name:"B.YU",dates:["12/2","8/3","10/5","10/7","9/14"]}
+  {name:"Tsel",dates:["5/1","7/2","7/3","7/5","7/7","11/7","10/28"]},
+  {name:"Axis",dates:["10/1","6,5/3","6/5","10/5","14/3","17/5","25/5","12/14","27/14","7/28","10/28","15/28","30/28","45/28"]},
+  {name:"Xl",dates:["4/3","7,5/7","15/7","7/28","15/28","28/28"]},
+  {name:"Im3",dates:["6/2","6/5","10/5","13/7","7/28","16/28"]},
+  {name:"TRI",dates:["10/1","11/3","10/5","12/5","15/7","8/28","16/28"]},
+  {name:"SM",dates:["6/3","6/5"]},
+  {name:"B.YU",dates:["12/2","8/3","10/5","10/7","9/14"]}
 ];
-let data;try{data=JSON.parse(localStorage.getItem("catatanCetakV1"))}catch(e){}if(!Array.isArray(data))data=JSON.parse(JSON.stringify(starter));
+let data;try{data=JSON.parse(localStorage.getItem("catatanCetakV2"))}catch(e){}if(!Array.isArray(data))data=JSON.parse(JSON.stringify(starter));
 const $=id=>document.getElementById(id);
 function esc(s){return String(s).replace(/[&<>"']/g,c=>({"&":"&amp;","<":"&lt;",">":"&gt;",'"':"&quot;","'":"&#39;"}[c]))}
-function persist(){try{localStorage.setItem("catatanCetakV1",JSON.stringify(data))}catch(e){}}
+function persist(){try{localStorage.setItem("catatanCetakV2",JSON.stringify(data))}catch(e){}}
 function renderEditors(){
- $("editors").innerHTML=data.length?data.map((c,i)=>`<div class="category"><div class="cathead"><span class="cat-number">${i+1}</span><input aria-label="Nama Voucher" value="${esc(c.name)}" onchange="renameCat(${i},this.value)" placeholder="Nama Voucher"><button class="btn btn-danger" onclick="removeCat(${i})" title="Hapus kategori">Hapus</button></div><div class="date-grid">${c.dates.map((d,j)=>`<div class="date-row"><input aria-label="Paket" value="${esc(d)}" onchange="editDate(${i},${j},this.value)" placeholder="Nama paket"><button class="btn btn-plain" onclick="removeDate(${i},${j})" title="Hapus tanggal">×</button></div>`).join("")}</div><div class="cat-actions"><button class="btn btn-soft" onclick="addDate(${i})">＋ Paket</button><span class="small-muted">${c.dates.length} baris</span></div></div>`).join(""):'<div class="empty">Belum ada voucher. Tekan “Tambah Voucher” untuk mulai.</div>';
+ $("editors").innerHTML=data.length?data.map((c,i)=>`<div class="category"><div class="cathead"><span class="cat-number">${i+1}</span><input aria-label="Nama Voucher" value="${esc(c.name)}" onchange="renameCat(${i},this.value)" placeholder="Nama Voucher"><button class="btn btn-danger" onclick="removeCat(${i})" title="Hapus kategori">Hapus</button></div><div class="date-grid">${c.dates.map((d,j)=>`<div class="date-row"><input aria-label="Paket" value="${esc(d)}" onchange="editDate(${i},${j},this.value)" placeholder="Nama paket"><button class="btn btn-plain" onclick="removeDate(${i},${j})" title="Hapus tanggal">×</button></div>`).join("")}</div><div class="cat-actions"><button class="btn btn-soft" onclick="addDate(${i})">＋ Tambah Paket</button><span class="small-muted">${c.dates.length} baris</span></div></div>`).join(""):'<div class="empty">Belum ada voucher. Tekan “Tambah Voucher” untuk mulai.</div>';
 }
 function renderPaper(){
- const size=$("paperSize").value,ori=$("orientation").value,fs=+$("fontSize").value,mg=+$("marginSize").value,rh=+$("rowHeight").value,dw=+$("dateWidth").value;
+ const size=$("paperSize").value,ori=$("orientation").value,fs=+$("fontSize").value,mg=+$("marginSize").value,rh=+$("rowHeight").value;
  const sizes={A4:[210,297],F4:[215,330],Letter:[216,279]};let [w,h]=sizes[size];if(ori==="landscape")[w,h]=[h,w];
  const totalRows=data.reduce((n,c)=>n+1+c.dates.length,0),cats=data.length;
- const usableH=h-2*mg;
+ const usableH=h-2*mg-8;
   // Jarak baris paket dibuat lebih lega seperti contoh foto, lalu dipadatkan hanya jika perlu.
   const packageRows=data.reduce((n,c)=>n+c.dates.length,0);
   const headingSpace=cats*4.5, groupSpace=cats*3.5;
@@ -136,7 +144,7 @@ function renderPaper(){
   let actualRow=Math.min(rh,Math.max(3.5,fitRow));
   let actualFont=Math.min(fs,Math.max(6.5,actualRow*1.65));
   let catGap=3.5;
- const p=$("paper");p.style.width=w+"mm";p.style.minHeight=h+"mm";p.style.setProperty("--paper-width",w+"mm");p.style.setProperty("--paper-height",h+"mm");p.style.setProperty("--print-margin",mg+"mm");p.style.setProperty("--rowheight",actualRow+"mm");p.style.setProperty("--fontsize",actualFont+"pt");p.style.setProperty("--datewidth",dw+"mm");p.style.setProperty("--catgap",catGap+"mm");
+ const p=$("paper");p.style.width=w+"mm";p.style.minHeight=h+"mm";p.style.setProperty("--paper-width",w+"mm");p.style.setProperty("--paper-height",h+"mm");p.style.setProperty("--print-margin",mg+"mm");p.style.setProperty("--print-top-margin",(mg+8)+"mm");p.style.setProperty("--rowheight",actualRow+"mm");p.style.setProperty("--fontsize",actualFont+"pt");p.style.setProperty("--catgap",catGap+"mm");
  p.innerHTML=data.map(c=>`<section class="print-cat"><h3>${esc(c.name||"VOUCHER")}</h3>${c.dates.map(d=>`<div class="print-row"><span class="print-date">${esc(d)} :</span><span class="print-line"></span></div>`).join("")}</section>`).join("");
  $("paperInfo").textContent=`${size} · ${ori==="portrait"?"POTRET":"LANSAKAP"} · ${totalRows} baris`;
 }
@@ -148,7 +156,7 @@ function addDate(i){data[i].dates.push("");update()}
 function removeDate(i,j){data[i].dates.splice(j,1);update()}
 function addDateToLast(){if(!data.length){addCategory();return}addDate(data.length-1)}
 function resetData(){if(confirm("Kembalikan daftar contoh awal?")){data=JSON.parse(JSON.stringify(starter));update()}}
-["paperSize","orientation","fontSize","rowHeight","marginSize","dateWidth"].forEach(id=>$(id).addEventListener("change",renderPaper));
+["paperSize","orientation","fontSize","rowHeight","marginSize"].forEach(id=>$(id).addEventListener("change",renderPaper));
 renderEditors();renderPaper();
 </script>
 </body>
